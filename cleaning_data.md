@@ -8,17 +8,20 @@ What issues will you address by cleaning the data?
 •	Managing absent data and filling in gaps
 
 
->query to  find any duplicate row
+-query to  find any duplicate row
+
+
 select distinct fullvisitorid 
 	from all_sessions
 
 
->Query to find null values in a column:
+-Query to find null values in a column:
+
 select productrefundamount  
 from all_sessions
 where productrefundamount is not null
 
->Queries to find redundant columns and removing them
+-Queries to find redundant columns and removing them
 
 select itemquantity from all_sessions
 where itemquantity is not null;
@@ -39,7 +42,7 @@ ALTER TABLE all_sessions
 DROP COLUMN searchkeyword 
 
 
->Queries for  cleaning structural issues: replacing 'not set' with null 
+-Queries for  cleaning structural issues: replacing 'not set' with null 
 
 
 
@@ -51,7 +54,7 @@ UPDATE all_sessions
 SET currencycode = 'USD'
 WHERE currencycode = ' ' OR currencycode is NULL
 
-> Queries for handling missing values
+-Queries for handling missing values
 --filling city name with country name if city name not available
 update all_sessions
 set city = 
@@ -70,7 +73,7 @@ end as rev_corrected
 from analytics
 where units_sold is not null
 
->correcting values like:  product_price 
+-correcting values like:  product_price 
 
 UPDATE all_sessions 
 SET "productprice" = "productprice"/1000000
